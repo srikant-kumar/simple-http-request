@@ -11,6 +11,8 @@ namespace Httprequest;
 
 class Httprequest {
 
+    const QUERY_OPTION = '?';
+
     // Request URL
     private $url;
     // Content Type
@@ -44,6 +46,8 @@ class Httprequest {
     private $http_code;
     // cURL error.
     private $error;
+    //Query Parameters
+    private $query_parameter;
 
     /**
      * Called when the Request object is created.
@@ -61,7 +65,7 @@ class Httprequest {
     /* Get Request Url */
 
     public function get_request_url() {
-        return $this->url;
+        return $this->url . $this->query_parameter;
     }
 
     /* Set Content Type */
@@ -110,6 +114,20 @@ class Httprequest {
 
     public function get_post_data() {
         return $this->post_data;
+    }
+
+    /* Set Query Prameters */
+
+    public function set_query_parameter(array $parameter) {
+        if (!empty($parameter)) {
+            $this->query_parameter = self::QUERY_OPTION . http_build_query($parameter);
+        }
+    }
+
+    /* Get Query Prameters */
+
+    public function get_query_parameter() {
+        return $this->query_parameter;
     }
 
     /* @param $username & $password will be used for basic auth */
@@ -280,7 +298,7 @@ class Httprequest {
         // -----Set up cURL options-----------.
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_URL, $this->url . $this->query_parameter);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_MAXREDIRS, 5);

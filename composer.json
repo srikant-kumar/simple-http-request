@@ -1,0 +1,18 @@
+{
+    "name": "srikant-kumar/simple-http-request",
+    "description": "Use this package for making simple &amp; complex http request",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Httprequest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Srikant Kumar",
+			"email": "sri89694@gmail.com"
+        }
+    ],
+    "require": {}
+}

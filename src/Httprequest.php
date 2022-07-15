@@ -72,6 +72,8 @@ class Httprequest {
 
     public function set_content_type(string $content_type) {
         $this->content_type = $content_type;
+        $header_arr[] = 'Content-Type: ' . $content_type;
+        $this->headers = $header_arr;
     }
 
     /* Get Content Type */

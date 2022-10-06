@@ -9,7 +9,8 @@
 
 namespace Httprequest;
 
-class Httprequest {
+class Httprequest
+{
 
     const QUERY_OPTION = '?';
 
@@ -52,25 +53,29 @@ class Httprequest {
     /**
      * Called when the Request object is created.
      */
-    public function __construct($request_url) {
+    public function __construct($request_url)
+    {
         $this->url = $request_url;
     }
 
     /* @Override Intial Set Url */
 
-    public function set_request_url(string $request_url) {
+    public function set_request_url(string $request_url)
+    {
         $this->url = $request_url;
     }
 
     /* Get Request Url */
 
-    public function get_request_url() {
+    public function get_request_url()
+    {
         return $this->url . $this->query_parameter;
     }
 
     /* Set Content Type */
 
-    public function set_content_type(string $content_type) {
+    public function set_content_type(string $content_type)
+    {
         $this->content_type = $content_type;
         $header_arr[] = 'Content-Type: ' . $content_type;
         $this->headers = $header_arr;
@@ -78,19 +83,22 @@ class Httprequest {
 
     /* Get Content Type */
 
-    public function get_content_type() {
+    public function get_content_type()
+    {
         return $this->content_type;
     }
 
     /* Set timeout. Timeout value in seconds. */
 
-    public function set_timeout(int $timeout = 10) {
+    public function set_timeout(int $timeout = 10)
+    {
         $this->time_out = $timeout;
     }
 
     /* Get timeout */
 
-    public function get_timeout() {
+    public function get_timeout()
+    {
         return $this->time_out;
     }
 
@@ -98,29 +106,34 @@ class Httprequest {
      * Set a request type (by default, cURL will send a GET request).
      *   GET, POST, DELETE, PUT, etc
      */
-    public function set_request_method(string $type) {
+    public function set_request_method(string $type)
+    {
         $this->request_method = $type;
     }
 
-    public function get_request_method() {
+    public function get_request_method()
+    {
         return $this->request_method;
     }
 
     /* Set the POST fields (only used if $this->post_data is 'POST'). */
 
-    public function set_post_data($data) {
+    public function set_post_data($data)
+    {
         $this->post_data = $data;
     }
 
     /* Get Post Data */
 
-    public function get_post_data() {
+    public function get_post_data()
+    {
         return $this->post_data;
     }
 
     /* Set Query Prameters */
 
-    public function set_query_parameter(array $parameter) {
+    public function set_query_parameter(array $parameter)
+    {
         if (!empty($parameter)) {
             $this->query_parameter = self::QUERY_OPTION . http_build_query($parameter);
         }
@@ -128,13 +141,15 @@ class Httprequest {
 
     /* Get Query Prameters */
 
-    public function get_query_parameter() {
+    public function get_query_parameter()
+    {
         return $this->query_parameter;
     }
 
     /* @param $username & $password will be used for basic auth */
 
-    public function set_basic_auth(string $username, string $password) {
+    public function set_basic_auth(string $username, string $password)
+    {
         $this->user_password = $username . ':' . $password;
     }
 
@@ -142,45 +157,52 @@ class Httprequest {
      * Enable cookies.
      * @param string $cookie_path : Absolute path to a txt file where cookie information will be stored.
      */
-    public function enable_cookies(string $cookie_path) {
+    public function enable_cookies(string $cookie_path)
+    {
         $this->cookies_enabled = TRUE;
         $this->cookie_path = $cookie_path;
     }
 
     /* Disable cookies */
 
-    public function disable_cookies() {
+    public function disable_cookies()
+    {
         $this->cookies_enabled = FALSE;
         $this->cookie_path = '';
     }
 
     /* Timeout value in seconds */
 
-    public function set_connect_timeout(int $connection_timeout = 10) {
+    public function set_connect_timeout(int $connection_timeout = 10)
+    {
         $this->connect_timeout = $connection_timeout;
     }
 
     /* Enable SSL */
 
-    public function enable_ssl() {
+    public function enable_ssl()
+    {
         $this->ssl = TRUE;
     }
 
     /* Disable SSL. */
 
-    public function disable_ssl() {
+    public function disable_ssl()
+    {
         $this->ssl = FALSE;
     }
 
     /*  Send custom user agent */
 
-    public function set_user_agent(string $useragent) {
+    public function set_user_agent(string $useragent)
+    {
         $this->user_agent = $useragent;
     }
 
     /* Set HTTP Request Headers */
 
-    public function set_request_headers(array $request_headers = []) {
+    public function set_request_headers(array $request_headers = [])
+    {
         if (isset($this->content_type) && !empty($this->content_type)) {
             $request_headers['Content-Type'] = $this->content_type;
         } else if (isset($request_headers['Content-Type'])) {
@@ -195,7 +217,8 @@ class Httprequest {
 
     /* Set HTTP Request Headers */
 
-    public function get_request_headers() {
+    public function get_request_headers()
+    {
         return $this->headers;
     }
 
@@ -204,32 +227,36 @@ class Httprequest {
      * Timeout value in seconds.
      */
 
-    public function get_connect_timeout() {
+    public function get_connect_timeout()
+    {
         return $this->connect_timeout;
     }
 
     /* Get the response body */
 
-    public function get_response() {
+    public function get_response()
+    {
         return $this->response_body;
     }
 
     /* Response header */
 
-    public function get_response_header() {
+    public function get_response_header()
+    {
         return $this->response_header;
     }
 
     /* Response header */
 
-    public function get_response_header_array() {
+    public function get_response_header_array()
+    {
         $headers['http_code'] = $this->http_code;
         foreach (explode("\r\n", $this->response_header) as $key => $line) {
             if (!empty($line)) {
                 if ($key == 0)
                     $headers['http_status'] = $line;
                 else {
-                    list ($key, $value) = explode(': ', $line);
+                    list($key, $value) = explode(': ', $line);
                     $headers[$key] = $value;
                 }
             }
@@ -239,7 +266,8 @@ class Httprequest {
 
     /* Get the HTTP status code for the response */
 
-    public function get_http_code() {
+    public function get_http_code()
+    {
         return $this->http_code;
     }
 
@@ -249,7 +277,8 @@ class Httprequest {
      * @return int
      *   Latency, in milliseconds.
      */
-    public function get_excution_time($unit = 'ms') {
+    public function get_excution_time($unit = 'ms')
+    {
         switch ($unit) {
             case 's':
                 $time = $this->execution_time;
@@ -270,7 +299,8 @@ class Httprequest {
 
     /*   An error message, if any error was given. Otherwise, empty. */
 
-    public function get_error() {
+    public function get_error()
+    {
         return $this->error;
     }
 
@@ -281,7 +311,8 @@ class Httprequest {
      * for the content if the response code is 200 OK.
      * TRUE if $content was found in the response, FALSE otherwise.
      */
-    public function check_response_for_content($content = '') {
+    public function check_response_for_content($content = '')
+    {
         if ($this->httpCode == 200 && !empty($this->responseBody)) {
             if (strpos($this->responseBody, $content) !== FALSE) {
                 return TRUE;
@@ -296,7 +327,8 @@ class Httprequest {
      * After this method is completed, the response body, headers, excution_time, etc.
      * will be populated, and can be accessed with the appropriate methods.
      */
-    public function run() {
+    public function run()
+    {
         // -----Set up cURL options-----------.
         $ch = curl_init();
 
@@ -313,6 +345,12 @@ class Httprequest {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->request_method);
             //Check if method is post & post data is passed
             if ($this->request_method == 'POST' && isset($this->post_data)) {
+                $this->post_data = $this->make_post_data($this->post_data);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post_data);
+            }
+
+            //Check if method is put & post data is passed
+            if ($this->request_method == 'PUT' && isset($this->post_data)) {
                 $this->post_data = $this->make_post_data($this->post_data);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post_data);
             }
@@ -364,7 +402,8 @@ class Httprequest {
     }
 
     //----------Making Post Data according to content type
-    private function make_post_data($post_data) {
+    private function make_post_data($post_data)
+    {
         switch ($this->content_type) {
             case 'application/json':
                 $return_data = json_encode($post_data);
@@ -385,5 +424,4 @@ class Httprequest {
         }
         return $return_data;
     }
-
 }

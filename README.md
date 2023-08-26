@@ -2,7 +2,13 @@
 
 # Simple HTTP Request : PHP
 
-This is a simple HTTP Request Class that help with many convenience methods for making any type of server to server request without knowing CURL.
+The "Simple HTTP Request" class in PHP offers a user-friendly solution for making versatile server-to-server requests without requiring intricate knowledge of the CURL library. This class streamlines the process by providing a range of convenient methods, eliminating the need for directly dealing with CURL.
+
+With this class, developers can effortlessly initiate HTTP requests, regardless of their type, by abstracting away the complexities of CURL. Whether you need to perform GET, POST, PUT, or DELETE requests, this class has you covered. Its intuitive interface empowers developers to communicate with remote servers without delving into the intricate details of the underlying protocol.
+
+By utilizing the "Simple HTTP Request" class, you can focus on the core functionality of your application while leaving the intricacies of HTTP communication to the class itself. This improves code readability, reduces development time, and minimizes potential errors that might arise from manually handling CURL operations.
+
+In summary, the "Simple HTTP Request" class simplifies and enhances the process of sending HTTP requests in PHP, offering a collection of convenience methods that abstract the complexities of CURL. This class is a valuable tool for any developer aiming to streamline server-to-server communication while maintaining a clean and efficient codebase.
 
 ## How to Use It ?
 
